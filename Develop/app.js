@@ -4,12 +4,16 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+const util = require("util");
 
+const writeFileAsync = util.promisify(fs.writeFile);
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
-const writeFileAs = util.promisify(fs.writeFile)
 
 const render = require("./lib/htmlRenderer");
+
+// Write code to use inquirer to gather information about the development team members,
+// and to create objects for each team member (using the correct classes as blueprints!)
 
 const employees = [];
 
@@ -19,22 +23,22 @@ function createManager() {
       {
         type: "input",
         name: "name",
-        message: "What's your managers name?",
+        message: "What is your manager's name?",
       },
       {
         type: "input",
         name: "id",
-        message: "What's is your managers id?",
+        message: "What is your manager's id?",
       },
       {
         type: "input",
         name: "email",
-        message: "What's your managers email?",
+        message: "What is your manager's email?",
       },
       {
         type: "input",
         name: "office",
-        message: "What's your managers office number?",
+        message: "What is your manager's office number?",
       },
     ])
     .then(function (answers) {
@@ -82,22 +86,22 @@ function createEngineer() {
       {
         type: "input",
         name: "name",
-        message: "What's your engineers name?",
+        message: "What is your engineer's name?",
       },
       {
         type: "input",
         name: "id",
-        message: "What's your engineers id?",
+        message: "What is your engineer's id?",
       },
       {
         type: "input",
         name: "email",
-        message: "What's your engineers email?",
+        message: "What is your engineer's email?",
       },
       {
         type: "input",
         name: "github",
-        message: "What's your engineers github?",
+        message: "What is your engineer's github?",
       },
     ])
     .then(function (answers) {
@@ -118,22 +122,22 @@ function createIntern() {
       {
         type: "input",
         name: "name",
-        message: "What's your interns name?",
+        message: "What is your intern's name?",
       },
       {
         type: "input",
         name: "id",
-        message: "What's your interns id?",
+        message: "What is your intern's id?",
       },
       {
         type: "input",
         name: "email",
-        message: "What's your interns email?",
+        message: "What is your intern's email?",
       },
       {
         type: "input",
         name: "school",
-        message: "What's your interns school?",
+        message: "What is your intern's school?",
       },
     ])
     .then(function (answers) {
@@ -148,9 +152,6 @@ function createIntern() {
     });
 }
 createManager();
-
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
